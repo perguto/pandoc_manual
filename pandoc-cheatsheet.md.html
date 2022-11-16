@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pandoc-cheatsheet</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Here’s some tricks that are allowed by pandoc but not obvious at
+first sight.</p>
+<hr />
+<p><strong>Table of Contents</strong></p>
+<!-- MarkdownTOC autolink="true" bracket="round" autoanchor="false" lowercase="true" lowercase_only_ascii="true" uri_encoding="true" depth="3" -->
+<ul>
+<li><a href="#from-markdown-to-markdown">From Markdown, To Markdown</a>
+<ul>
+<li><a href="#cleanup">Cleanup</a></li>
+<li><a href="#toc-generation">TOC generation</a></li>
+<li><a href="#using-markdown-templates">Using Markdown
+Templates</a></li>
+<li><a href="#math-in-pure-markdown">Math in Pure Markdown</a></li>
+<li><a href="#convert-between-the-4-table-syntaxes-in-pandoc">Convert
+Between the 4 Table Syntaxes in Pandoc</a></li>
+<li><a
+href="#repeated-footnotes-anchors-and-headers-across-multiple-files">Repeated
+Footnotes Anchors and Headers Across Multiple Files</a></li>
+</ul></li>
+<li><a href="#template-snippet">Template Snippet</a></li>
+<li><a href="#yaml-metadata-for-any-format">YAML Metadata for Any
+Format</a></li>
+<li><a href="#left-aligning-tables-in-latex">Left-aligning Tables in
+LaTeX</a></li>
+<li><a href="#gfm-task-lists-with-pandoc">GFM Task Lists with Pandoc</a>
+<ul>
+<li><a href="#via-lua-filter">Via Lua Filter</a></li>
+<li><a href="#via-pp-macros">Via PP Macros</a></li>
+</ul></li>
+<li><a href="#today-in-date-metadata">Today in date metadata</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+<hr />
+<h1 id="from-markdown-to-markdown">From Markdown, To Markdown</h1>
+<p>using <code>pandoc -f markdown... -t markdown...</code> can have
+surprisingly useful applications. As a demo, this file is generated
+by</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">-t</span> gfm <span class="at">--atx-headers</span> <span class="dt">\</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">--reference-location</span><span class="op">=</span>block <span class="at">--toc</span> <span class="at">-s</span> <span class="at">-o</span> temp-github.md temp.md</span></code></pre></div>
+<p>Be careful of <code>@</code> though, you need to escape it in pandoc
+since it is treated as citation in pandoc.</p>
+<h2 id="cleanup">Cleanup</h2>
+<p>As shown in issue <a
+href="https://github.com/jgm/pandoc/issues/2814">#2814</a>, rendering a
+document to itself can be used to clean up / normalize your markdown
+file.</p>
+<h2 id="toc-generation">TOC generation</h2>
+<p><em>e.g.</em> you have a long markdown file in GitHub and want to
+have a TOC, you can use
+<code>pandoc -t gfm --toc -o example-with-toc.md example.md</code></p>
+<p>This a useful workaround to update the TOC of very long documents,
+but —beware!— if you use this trick for writing over the input file,
+you’ll end stacking TOCs — each new Table of Contents being generated
+above the previously built ones, and indexing them too. This technique
+is useful when working with different source and output files.</p>
+<p>Also, you can add a title to the TOC using the <code>toc-title</code>
+variable, but only if you use a markdown template — as explained
+ahead.</p>
+<h2 id="using-markdown-templates">Using Markdown Templates</h2>
+<p>Did you know that you can use pandoc template with markdown too?</p>
+<p>Ask pandoc to write-out the default template for markdown:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">--print-default-template</span><span class="op">=</span>markdown <span class="op">&gt;</span> template.markdown</span></code></pre></div>
+<p>And now let’s peek at the template we got:</p>
+<pre><code>$if(titleblock)$
+$titleblock$
+
+$endif$
+$for(header-includes)$
+$header-includes$
+
+$endfor$
+$for(include-before)$
+$include-before$
+
+$endfor$
+$if(toc)$
+$toc$
+
+$endif$
+$body$
+$for(include-after)$
+
+$include-after$
+$endfor$</code></pre>
+<p>As you can see, there’s plenty of conditional statements to play
+with, allowing for additional control over the output markdown file.</p>
+<p>You can also use the <code>toc-title</code> template variable to tell
+pandoc to add a title on top of the generated TOC. Change the template’s
+<code>toc</code> block like this:</p>
+<pre><code>$if(toc)$
+$if(toc-title)$
+# $toc-title$
+$endif$
+
+$toc$
+
+$endif$</code></pre>
+<p>And now invoke pandoc like this:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">--toc</span> <span class="at">-V</span> toc-title:<span class="st">&quot;Table of Contents&quot;</span> <span class="at">--template</span><span class="op">=</span>template.markdown <span class="at">-o</span> example-with-toc.md example.md</span></code></pre></div>
+<p>And you’ll see in the <code>example-with-toc.md</code> file an
+auto-generated Table of Contents with a <code># Table of Contents</code>
+title over it.</p>
+<blockquote>
+<p><strong>NOTE</strong>: if you also include some extra markdown
+contents with the <code>--include-before-body</code> option (eg:
+<code>--include-before-body=somefile.md</code>) the contents of the
+included file will go before the TOC (at least, with the template used
+in this example) and any headings it contains will not be included in
+the TOC — ie: the TOC only indexes what comes after the
+<code>$toc$</code> template tag. This is useful if you’d like to include
+an Abstract before the TOC.</p>
+</blockquote>
+<h2 id="math-in-pure-markdown">Math in Pure Markdown</h2>
+<p>The manual said:</p>
+<blockquote>
+<p>Note: the <code>--webtex</code> option will affect Markdown output as
+well as HTML.</p>
+</blockquote>
+<p>This can be used to put math in pure markdown. <em>e.g.</em> you want
+to put math directly in the README.md in GitHub.</p>
+<p>For example, in the <code>temp.md</code>:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Important Discovery!</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>$1+2\neq3!$</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>Try it!</span></code></pre></div>
+<p>Run this:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">--atx-headers</span> <span class="at">--webtex</span><span class="op">=</span>https://latex.codecogs.com/png.latex<span class="pp">?</span> <span class="at">-s</span> <span class="at">-o</span> temp-codecogs.md temp.md</span></code></pre></div>
+<p>Then the output becomes:</p>
+<blockquote>
+<h1 id="important-discovery">Important Discovery!</h1>
+<figure>
+<embed src="https://latex.codecogs.com/png.latex?1%2B2%5Cneq3%21"
+title="1+2\neq3!" />
+<figcaption aria-hidden="true">1+2\neq3!</figcaption>
+</figure>
+<p>Try it!</p>
+</blockquote>
+<h2 id="convert-between-the-4-table-syntaxes-in-pandoc">Convert Between
+the 4 Table Syntaxes in Pandoc</h2>
+<p>Say, in your source markdown file <code>pipe.md</code>:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>| testing     | pandoc            | tables  |</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>|-------------|-------------------|---------|</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>| simple cell | no multiline cell | and     |</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>| so          | on                | no list |</span></code></pre></div>
+<p>In command line,</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">-t</span> markdown-simple_tables-multiline_tables-pipe_tables <span class="at">-s</span> <span class="at">-o</span> grid.md pipe.md</span></code></pre></div>
+<p>In the output <code>grid.md</code>:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>+--------------------------+--------------------------+--------------------------+</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>| testing                  | pandoc                   | tables                   |</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>+==========================+==========================+==========================+</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>| simple cell              | no multiline cell        | and                      |</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>+--------------------------+--------------------------+--------------------------+</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>| so                       | on                       | no list                  |</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>+--------------------------+--------------------------+--------------------------+</span></code></pre></div>
+<h2
+id="repeated-footnotes-anchors-and-headers-across-multiple-files">Repeated
+Footnotes Anchors and Headers Across Multiple Files</h2>
+<p>If you use auto-identifiers for the headers, and there are different
+headers with the same name across different files, you’d want to
+catenate them together, and pandoc can do this for you:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> file1.md file2.md ...</span></code></pre></div>
+<p>But if there are repeated footnotes anchors on both files, you need
+to use the <code>--file-scope</code> option, which will parse each file
+individually (so the footnotes anchors are “local” to the individual
+file):</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> file1.md file2.md <span class="at">--file-scope</span> ...</span></code></pre></div>
+<p>What about if the 2 files have both these problems? i.e., headers
+with same names (hence the same Id by the auto-identifier) and footnotes
+with same anchors appear across the files. Either approach gives you
+problems.</p>
+<p>In this case, you can use “to markdown from markdown” to write an
+intermediate markdown file using <code>--file-scope</code>, which
+handles the colliding footnote anchors for you, and then generate the
+final document from that intermediate markdown file, and let the
+auto-identifiers handle the headers for you:</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">--file-scope</span> <span class="at">-o</span> intermediate.md file1.md file2.md</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> intermediate.md ...</span></code></pre></div>
+<h1 id="template-snippet">Template Snippet</h1>
+<p>If you wrote a template snippet that do not form a complete template.
+The <code>-H</code>, <code>-B</code>, or <code>-A</code> option would
+not help because pandoc would put your snippet as is and wouldn’t
+process it as a template. <em>i.e.</em> The snippet is included after
+the template is processed.</p>
+<p>A trick mentioned by <a href="https://github.com/cagix"><span
+class="citation" data-cites="cagix">@cagix</span></a> in <a
+href="https://github.com/jgm/pandoc-templates/issues/220">jgm/pandoc-templates#220</a>
+is this:</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">--template</span><span class="op">=</span>template_snippet.tex document.md <span class="at">-o</span> processed_snippet</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> ... <span class="at">-H</span> processed_snippet document.md <span class="at">-o</span> document.<span class="op">&lt;</span>toFormat<span class="op">&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Or shorter but bash only (process substitution)</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="va">SNIPPET</span><span class="op">=</span>template_snippet.tex<span class="kw">;</span> <span class="va">INPUT</span><span class="op">=</span>document.md<span class="kw">;</span> <span class="va">OUTPUT</span><span class="op">=</span>document.<span class="op">&lt;</span>toFormat<span class="op">&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> ... <span class="at">-H</span> <span class="op">&lt;(</span><span class="ex">pandoc</span> <span class="at">--template</span><span class="op">=</span><span class="va">$SNIPPET</span> <span class="va">$INPUT</span><span class="op">)</span> <span class="va">$INPUT</span> <span class="at">-o</span> <span class="va">$OUTPUT</span></span></code></pre></div>
+<p>The first line will process your template snippet according to the
+properties of the document, but since your snippet (probably) do not
+have <code>$body$</code>, the body would not be in the output. Now the
+snippet is processed and can then be included through <code>-H</code> as
+is in the 2nd line.</p>
+<h1 id="yaml-metadata-for-any-format">YAML Metadata for Any Format</h1>
+<p>YAML metadata is only defined for pandoc’s markdown syntax. See <a
+href="https://github.com/jgm/pandoc/issues/1960#issuecomment-273587588">jgm/pandoc#1960</a>.</p>
+<p>Currently, there is a workaround like this (while the YAML metadata
+only accepts markdown syntax):</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">-f</span> markdown <span class="at">-t</span> native <span class="at">-s</span> metadata.yml <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&#39;$ d&#39;</span> <span class="op">&gt;</span> metadata.native</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">-t</span> native <span class="at">-o</span> document.native document.<span class="op">&lt;</span>fromFormat<span class="op">&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">-f</span> native <span class="at">-s</span> <span class="at">-o</span> document.<span class="op">&lt;</span>toFormat<span class="op">&gt;</span> metadata.native document.native</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Or shorter but bash only (process substitution)</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="va">YAML</span><span class="op">=</span>metadata.yml<span class="kw">;</span> <span class="va">INPUT</span><span class="op">=</span>document.<span class="op">&lt;</span>fromFormat<span class="op">&gt;</span><span class="kw">;</span> <span class="va">OUTPUT</span><span class="op">=</span>document.<span class="op">&lt;</span>toFormat<span class="op">&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> ... <span class="at">-f</span> native <span class="at">-s</span> <span class="at">-o</span> <span class="va">$OUTPUT</span> <span class="op">&lt;(</span><span class="ex">pandoc</span> <span class="at">-f</span> markdown <span class="at">-t</span> native <span class="at">-s</span> <span class="va">$YAML</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&#39;$ d&#39;</span><span class="op">)</span> <span class="op">&lt;(</span><span class="ex">pandoc</span> <span class="at">-t</span> native <span class="va">$INPUT</span><span class="op">)</span></span></code></pre></div>
+<p>Explanation:</p>
+<p>The <code>sed</code> in the first line: because the
+<code>metadata.yml</code> is regarding as a markdown document with no
+body, so the last line of the metadata in native format is
+<code>[]</code>, which you need to remove. Another way of removing it is
+<code>head -n -1</code> (would not work on Mac’s default
+<code>head</code>). From my test it seems the meta in native is always
+in one-line, if true then <code>head -n1</code> will work (which also
+works on Mac).</p>
+<h1 id="left-aligning-tables-in-latex">Left-aligning Tables in
+LaTeX</h1>
+<p>Based on <a
+href="https://groups.google.com/forum/#!topic/pandoc-discuss/pmiw78NvZl4">this
+pandoc-discuss exchange</a> and <a
+href="http://tex.stackexchange.com/questions/6456/set-a-global-policy-for-floats-positioning">this
+TeX StackExchange topic</a>, it is possible to left-align all tables in
+a document (in the PDF output from LaTeX) with this single invocation in
+the YAML header block of the markdown document:</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">header-includes</span><span class="kw">:</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">  - </span><span class="ch">|</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    ```{=latex}</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    \usepackage[margins=raggedright]{floatrow}</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    ```</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">...</span></span></code></pre></div>
+<p>This applies to all floats, and fine-grained control may be achieved
+with the options outlined in <a
+href="http://mirrors.ctan.org/macros/latex/contrib/floatrow/floatrow.pdf">the
+documentation for the <code>floatrow</code> LaTeX package</a>.</p>
+<h1 id="gfm-task-lists-with-pandoc">GFM Task Lists with Pandoc</h1>
+<p>There are currently two ways to allow support of GitHub Flavored
+Markdown Task Lists:</p>
+<ol type="1">
+<li>Via the <a
+href="https://github.com/pandoc/lua-filters/tree/master/task-list"
+title="Visit the pandoc &#39;lua-filters&#39; repository">Task-List
+Lua</a> pandoc filter</li>
+<li>Via custom PP macros</li>
+</ol>
+<p>The former is the recommended way, the latter was introduced before
+the Lua filter came into place.</p>
+<h2 id="via-lua-filter">Via Lua Filter</h2>
+<p>Download the <a
+href="https://github.com/pandoc/lua-filters/blob/master/task-list/task-list.lua"
+title="See the source file of &#39;task-list.lua&#39; on GitHub"><code>task-list.lua</code></a>
+file and save it in <code>$DATADIR/pandoc/filters/</code>, so it will be
+visible to pandoc system-wide. Now, when you invoke pandoc with the
+<code>--lua-filter=task-list.lua</code>, Task Lists in markdown source
+documents will be supported as on GitHub.</p>
+<p>Command line usage example:</p>
+<pre class="shell"><code>pandoc --lua-filter=task-list.lua -o filename.html filename.md</code></pre>
+<p>The Task Lists filter will also take care of injecting the required
+CSS in HTML documents, in order to represent the Task List styles
+correctly.</p>
+<p>From the <a
+href="https://github.com/pandoc/lua-filters/tree/master/task-list"
+title="Visit the pandoc &#39;lua-filters&#39; repository">Task-List
+Lua</a> documentation:</p>
+<blockquote>
+<p>This filter recognizes this syntax and converts the ballot boxes into
+a representation suitable for the chosen output format. Ballot boxes are
+rendered as</p>
+<ul>
+<li>checkbox input elements in HTML,</li>
+<li>ASCII boxes in gfm and org-mode, and</li>
+<li>ballot box UTF-8 characters otherwise.</li>
+</ul>
+</blockquote>
+<h2 id="via-pp-macros">Via PP Macros</h2>
+<p>GitHub flavored markdown’s task lists can be mimicked in pandoc via
+the <code>GFM-TaskList.pp</code> custom pp macros module. Macro syntax
+example:</p>
+<pre><code>!TaskList(
+!Task[x][I&#39;m a _checked_ task]
+!Task[ ][I&#39;m an _unchecked_ task]
+)</code></pre>
+<p>The PP macros approach is more verbose and breaks a document’s
+comptability outside of PP usage context (eg, a <code>README.md</code>
+file on GitHub); this solution was deviced for pandoc v1.x, long before
+the <a
+href="https://github.com/pandoc/lua-filters/tree/master/task-list"
+title="Visit the pandoc &#39;lua-filters&#39; repository">Task-List
+Lua</a> solution was available. While it might still be usefeul in some
+specific contexts, using the Lua filter approach is recommended
+instead.</p>
+<p>For more information, and to download the
+<code>GFM-TaskList.pp</code> macros module:</p>
+<ul>
+<li><a
+href="https://github.com/tajmone/pandoc-goodies/tree/master/pp">“Pandoc-Goodies”
+project: pp-macros library</a></li>
+<li><a
+href="https://htmlpreview.github.io/?https://github.com/tajmone/pandoc-goodies/blob/master/templates/html5/github/GitHub-Template-Preview.html#task-lists">Live
+HTML preview of Task List created with pandoc and pp macros</a></li>
+</ul>
+<h1 id="today-in-date-metadata">Today in date metadata</h1>
+<p>Add this to the pandoc command you use:</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-M</span> date=<span class="st">&quot;</span><span class="kw">`</span><span class="fu">date</span> <span class="st">&quot;+%B %e, %Y&quot;</span><span class="kw">`</span><span class="st">&quot;</span></span></code></pre></div>
+<p>POSIX only.</p>
+</body>
+</html>
